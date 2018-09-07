@@ -1,4 +1,4 @@
-Fecha	Nulo1	Nulo2	Alternado1	Alternado2	Disperso1	Disperso2	Disperso3	Disperso 4
+Fecha	Nulo1	Nulo2	Alternado1	Alternado2	Disperso1	Disperso2	Disperso3	Disperso4
 10/05/2017 15:02	0	0	1	1	5	10	50	0
 10/05/2017 15:03	0	0	-1	-1	-5	-10	-50	1
 10/05/2017 15:03	0	0	1	1	5	10	50	3

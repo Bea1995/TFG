@@ -14,7 +14,7 @@ public class FuncionPatron extends Funcion{
 		this.tol=tol;
 		this.mismatches=mismatches;
 		this.metodo=metodo;
-		this.patron=new Vector<Integer>(5);
+		this.patron=new Vector<Integer>(1);
 		String[] patrones=patron.split(" ");
 		for(int i=0; i<patrones.length; i++){
 			this.patron.addElement(Integer.valueOf(patrones[i]));
@@ -30,7 +30,10 @@ public class FuncionPatron extends Funcion{
 	}
 	
 	public void calculo() {
-		if(mismatches==0) BoyerMooreGoodSuffixRule();
+		if(mismatches==0){
+			if(patron.size()>1) BoyerMooreGoodSuffixRule();
+			else fuerzaBrutaOpt();
+		}
 		else BoyerMooreMatriz();
 	}
 	
@@ -53,7 +56,7 @@ public class FuncionPatron extends Funcion{
 				}
 			}
 			if(neq<=mismatches){
-				indices.addElement(i);
+				if(i!=0) indices.addElement(i);
 				mismatList.addElement(neq);
 			}
 		}
@@ -80,7 +83,7 @@ public class FuncionPatron extends Funcion{
 				if(neq>mismatches) j=patron.size(); //Break del for
 			}
 			if(neq<=mismatches){
-				indices.addElement(i);
+				if(i!=0) indices.addElement(i);
 				mismatList.addElement(neq);
 			}
 		}
@@ -169,7 +172,7 @@ public class FuncionPatron extends Funcion{
 			}
 			//Si el numero de discrepancias es menor, se produce una ocurrencia
 			if(neq<=mismatches){
-				indices.addElement(j-m);
+				if(j-m!=0) indices.addElement(j-m);
 				mismatList.addElement(neq);
 			}
 			j=j+d;
@@ -255,7 +258,7 @@ public class FuncionPatron extends Funcion{
 			}
 			//Si el numero de discrepancias es menor, se produce una ocurrencia
 			if(neq<=mismatches){
-				indices.addElement(j-patron.size());
+				if(j-patron.size()!=0) indices.addElement(j-patron.size());
 				mismatList.addElement(neq);
 			}
 			j=j+d;
@@ -378,7 +381,7 @@ public class FuncionPatron extends Funcion{
 			//Si hay una ocurrencia la devolvemos
 			if((aux1+aux2)<=mismatches && i>=m){
 				int ind=i-patron.size()+1;
-				indices.addElement(ind);
+				if(ind!=0) indices.addElement(ind);
 				mismatList.addElement(aux1+aux2);
 			}
 		}
@@ -495,7 +498,7 @@ public class FuncionPatron extends Funcion{
 			//Si hay una ocurrencia la devolvemos
 			if((aux1+aux2)<=mismatches && i>=patron.size()){
 				int ind=i-patron.size()+1;
-				indices.addElement(ind);
+				if(ind!=0) indices.addElement(ind);
 				mismatList.addElement(aux1+aux2);
 			}
 		}
@@ -677,7 +680,7 @@ public class FuncionPatron extends Funcion{
 			
 			//Si se llega al principio, se produce una ocurrencia
 			if(i==0){
-				indices.addElement(j-patron.size());
+				if(j-patron.size()!=0) indices.addElement(j-patron.size());
 				mismatList.addElement(0);
 				j+=m-l.get(1);
 			}
@@ -721,7 +724,7 @@ public class FuncionPatron extends Funcion{
 		for(int i=0; i<indices.size(); i++){
 			texto.append("Interval "+ (i+1) + ": ");
 			//El +1 es porque es en lenguaje natural
-			texto.append((aux+indices.get(i))+"-"+(aux+indices.get(i)+patron.size()+1));
+			texto.append((aux+indices.get(i))+"-"+(aux+indices.get(i)+patron.size()));
 			texto.append(" with " + mismatList.get(i) + " mismatch(es)\n");
 		}
 		
@@ -835,6 +838,7 @@ public class FuncionPatron extends Funcion{
 	private Vector<Integer> patron;
 	private Vector<Float> arbolPatron;
 	private EnumPatron metodo;
+	//No puede darse el indice 0 porque no pertenece a ninguna medida
 	private Vector<Integer> indices;
 	private Vector<Integer> mismatList;
 	private Hashtable<Integer,Vector<Integer>> tabla;
