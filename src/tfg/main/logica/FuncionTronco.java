@@ -42,7 +42,8 @@ public class FuncionTronco extends Funcion{
 	public String toString() {
 		StringBuilder texto=new StringBuilder();
 		
-		if(cantidad==Float.MAX_VALUE){
+		if(crecs.size()==0) texto.append("There is not a full day between both dates\n");
+		else if(cantidad==Float.MAX_VALUE){
 			int ind=1; 
 			float valor=0;
 			

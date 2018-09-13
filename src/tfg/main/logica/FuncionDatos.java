@@ -27,8 +27,8 @@ public class FuncionDatos extends Funcion{
 		texto.append("The data of the tree "+ arbol1.getNombre() + " are:\n");
 		
 		for(int i=0; i<arbol1.getCont(); i++){
-			texto.append("Interval\t\tData\tNormalized\tDifferences\n");
-			texto.append((aux+i+1)+"\t\t"+arbol1.getDatos().get(i)+"\t"+arbol1.getCalculoBase().get(i)+"\t"+arbol1.getDif().get(i)+"\n");
+			texto.append("Interval\tData\tNormalized\tDifferences\n");
+			texto.append((aux+i+1)+"\t"+arbol1.getDatos().get(i)+"\t"+arbol1.getCalculoBase().get(i)+"\t"+arbol1.getDif().get(i)+"\n");
 		}
 		
 		return texto.toString();

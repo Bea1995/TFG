@@ -115,6 +115,7 @@ public class Main {
 			
 	        	controlador.run();
 	        	cin.close();
+	        	System.exit(0);
 	        }
 	        else if(!tiempos){
 	        	//Se inicia el modo de ventana

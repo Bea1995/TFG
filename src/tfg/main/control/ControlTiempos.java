@@ -121,7 +121,7 @@ public class ControlTiempos {
 		System.out.println("Delayed time with matrix " + codigo +" without preprocessing: " + milisegundos.toMicros(tiempoAux) + " microseconds.");
 		func.limpiarDatos();
 		
-		if(mismatches==0){
+		if(mismatches==0 && patron.split(" ").length>1){
 			//Version exacta
 			tiempoAux=0;
 			tiempoInicio = System.nanoTime();

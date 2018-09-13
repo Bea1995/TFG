@@ -452,7 +452,10 @@ public class MainWindow extends JFrame implements Programa.Observer{
 				    
 				    if(!fallo && arbolA!=null && vent>0 && erro>=0 && valorMaximo>0 && erro<=vent/2) 
 				    	funcion=new FuncionIntervalo(arbolA,vent,valorMaximo,erro,fechaIni,fechaFin);
-				    else mensajeError+="Some of the data is not correct and no results can be displayed\n";
+				    else{
+				    	if(erro>vent/2) mensajeError+="The number of mismatches is greater than the allowed\n";
+				    	mensajeError+="Some of the data is not correct and no results can be displayed\n";
+				    }
 				    
 				    controlador.ejecutarFuncion(funcion,mensajeError,1);
 				}
@@ -561,6 +564,7 @@ public class MainWindow extends JFrame implements Programa.Observer{
 							}
 						}
 						else {
+							if(erro>vent/2) mensajeError+="The number of mismatches is greater than the allowed\n";
 							mensajeError+="Some of the data is not correct and no results can be displayed\n";
 							controlador.ejecutarFuncion(funcion,mensajeError,1);
 						}
@@ -621,7 +625,10 @@ public class MainWindow extends JFrame implements Programa.Observer{
 							arbolA=arboles.get(0);
 							arbolB=arboles.get(1);
 						}
-						else mensajeError+="Some of the data is not correct and no results can be displayed\n";
+						else{
+							if(erro>vent/2) mensajeError+="The number of mismatches is greater than the allowed\n";
+							mensajeError+="Some of the data is not correct and no results can be displayed\n";
+						}
 						
 						controlador.ejecutarFuncion(funcion,mensajeError,1);
 					}
@@ -799,7 +806,7 @@ public class MainWindow extends JFrame implements Programa.Observer{
 					
 					if(!Utils.isFloat(division)){
 				    	fallo=true;
-				    	mensajeError+="Tolerance is not real\n";
+				    	mensajeError+="Division is not a real other than 0\n";
 				    }
 				    else divi=Float.valueOf(division);
 					
@@ -816,9 +823,14 @@ public class MainWindow extends JFrame implements Programa.Observer{
 					}
 					else erro=Integer.valueOf(mismat);
 					
-					if(!fallo && arbolA!=null && Utils.patronCorrecto(pat) && toler>=0 && toler<=0.5 && erro>=0 && erro<=(pat.length()/4))
+					if(!fallo && arbolA!=null && Utils.patronCorrecto(pat) && divi!=0 && toler>=0 && toler<=0.5 && erro>=0 && erro<=(pat.length()/4))
 						funcion=new FuncionPatron(arbolA, pat, divi, toler, EnumPatron.BoyMor, erro, fechaIni, fechaFin);
-					else mensajeError+="Some of the data is not correct and no results can be displayed\n";
+					else{
+						if(toler<0 || toler>0.5) mensajeError+="Tolerance is not a real greater than 0 and less than 0.5\n";
+						if(divi==0) mensajeError+="Division can not be 0\n";
+						if(erro>(pat.length()/4)) mensajeError+="The number of mismatches is greater than the allowed\n";
+						mensajeError+="Some of the data is not correct and no results can be displayed\n";
+					}
 					
 					controlador.ejecutarFuncion(funcion,mensajeError,1);
 				}

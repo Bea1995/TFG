@@ -396,7 +396,7 @@ public class Controlador {
 			}
 			
 			arbolA=programa.existeArbol(arbol1, fechaIni, fechaFin);
-			if(arbolA==null || tol<0 || tol>0.5 || !Utils.patronCorrecto(patron) 
+			if(arbolA==null || tol<0 || tol>0.5 || eps==0 || !Utils.patronCorrecto(patron) 
 					|| mismatches<0 || mismatches>(patron.length()/2)){
 				programa.error("");
 				return null;

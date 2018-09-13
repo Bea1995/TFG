@@ -114,10 +114,10 @@ public class Utils {
 		String [] datos1=datos[0].split("/");
 		String [] datos2=datos[1].split(":");
 		
-		if(datos1.length!=3 && datos2.length!=3) return false;
+		if(datos1.length!=3 || datos2.length!=3) return false;
 		
-		if(!isInteger(datos1[0]) && !isInteger(datos1[1]) && !isInteger(datos1[2])) return false;
-		if(!isInteger(datos2[0]) && !isInteger(datos2[1]) && !isInteger(datos2[2])) return false;
+		if(!isInteger(datos1[0]) || !isInteger(datos1[1]) || !isInteger(datos1[2])) return false;
+		if(!isInteger(datos2[0]) || !isInteger(datos2[1]) || !isInteger(datos2[2])) return false;
 		
 		int dia=Integer.valueOf(datos1[0]);
 		int mes=Integer.valueOf(datos1[1]);

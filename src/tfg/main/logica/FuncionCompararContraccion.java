@@ -109,10 +109,14 @@ public class FuncionCompararContraccion extends Funcion{
 	//Metodo toString
 	public String toString() {
 		StringBuilder texto=new StringBuilder();
-		float sim=parecidos();
 		
-		texto.append("The similarity of the contraction between the trees " + arbol1.getNombre());
-		texto.append(" and " + arbol2.getNombre() + " is " + sim*100 + "%\n");
+		if(ctr1.size()==0) texto.append("There is not a full day between both dates\n");
+		else{
+			float sim=parecidos();
+		
+			texto.append("The similarity of the contraction between the trees " + arbol1.getNombre());
+			texto.append(" and " + arbol2.getNombre() + " is " + sim*100 + "%\n");
+		}
 		
 		return texto.toString();
 	}

@@ -87,10 +87,14 @@ public class FuncionCompararTronco extends Funcion{
 	//Metodo toString
 	public String toString() {
 		StringBuilder texto=new StringBuilder();
-		float sim=parecidos();
 		
-		texto.append("The similarity of trunk growth between trees " + arbol1.getNombre());
-		texto.append(" and " + arbol2.getNombre() + " is " + sim*100 + "%\n");
+		if(crecs1.size()==0) texto.append("There is not a full day between both dates\n");
+		else{
+			float sim=parecidos();
+		
+			texto.append("The similarity of trunk growth between trees " + arbol1.getNombre());
+			texto.append(" and " + arbol2.getNombre() + " is " + sim*100 + "%\n");
+		}
 		
 		return texto.toString();
 	}
